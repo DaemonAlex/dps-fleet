@@ -332,7 +332,7 @@
   "kind": "SUV / truck"
  },
  "lore1rb": {
-  "dept": "unsorted",
+  "dept": "police",
   "kind": "Cruiser"
  },
  "marbcoprx": {
@@ -344,15 +344,15 @@
   "kind": "Cruiser"
  },
  "mtlusar": {
-  "dept": "unsorted",
-  "kind": "Cruiser"
+  "dept": "lsfd",
+  "kind": "Rescue"
  },
  "mtlusar1": {
-  "dept": "unsorted",
-  "kind": "Cruiser"
+  "dept": "lsfd",
+  "kind": "Rescue"
  },
  "nsandstormmk": {
-  "dept": "unsorted",
+  "dept": "bcso",
   "kind": "Cruiser"
  },
  "ocranger": {
@@ -456,7 +456,7 @@
   "kind": "Brush truck"
  },
  "spvhjv": {
-  "dept": "unsorted",
+  "dept": "police",
   "kind": "Cruiser"
  },
  "swatvanr2": {
@@ -476,11 +476,11 @@
   "kind": "Unmarked"
  },
  "vd_boat": {
-  "dept": "unsorted",
+  "dept": "uscg",
   "kind": "Boat"
  },
  "vors": {
-  "dept": "unsorted",
+  "dept": "police",
   "kind": "Cruiser"
  }
 }
