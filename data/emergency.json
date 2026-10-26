@@ -7,10 +7,6 @@
   "dept": "sams",
   "kind": "Helicopter"
  },
- "aleutianems": {
-  "dept": "sams",
-  "kind": "Ambulance"
- },
  "amb_rox_ambu": {
   "dept": "rmc",
   "kind": "Cruiser"
@@ -335,10 +331,6 @@
   "dept": "police",
   "kind": "SUV / truck"
  },
- "impalapdlc": {
-  "dept": "police",
-  "kind": "Cruiser"
- },
  "lore1rb": {
   "dept": "unsorted",
   "kind": "Cruiser"
@@ -357,10 +349,6 @@
  },
  "mtlusar1": {
   "dept": "unsorted",
-  "kind": "Cruiser"
- },
- "nkgauntlet4": {
-  "dept": "police",
   "kind": "Cruiser"
  },
  "nsandstormmk": {
@@ -469,10 +457,6 @@
  },
  "spvhjv": {
   "dept": "unsorted",
-  "kind": "Cruiser"
- },
- "surferpdb": {
-  "dept": "police",
   "kind": "Cruiser"
  },
  "swatvanr2": {
