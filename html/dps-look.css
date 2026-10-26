@@ -6,16 +6,16 @@ body{text-shadow:0 1px 2px rgba(0,0,0,.55)}
 *{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;box-shadow:none !important}
 :root{border-color:#ffffff !important}
 kbd{border-color:#ffffff !important;border-radius:16px}
-#bar{background:rgba(184,83,42,.86) !important;border-color:#ffffff !important;border-radius:16px}
+#bar{background:rgba(17,21,34,.86) !important;border-color:#ffffff !important;border-radius:16px}
 .t{font-family:Roboto,Arial,sans-serif !important;letter-spacing:.07em;font-weight:700}
 .x:hover{background:rgba(255,255,255,.12) !important}
 #wgrip:hover:before,#wgrip.on:before{background:#f4f1ea !important;color:#14161f !important;text-shadow:none !important;border-color:#14161f !important}
-#panel{background:rgba(184,83,42,.86) !important;border-color:#ffffff !important;border-radius:16px}
+#panel{background:rgba(17,21,34,.86) !important;border-color:#ffffff !important;border-radius:16px}
 .chips{background:rgba(255,255,255,.12) !important;border-color:#ffffff !important}
 .chip{border-color:#ffffff !important;border-radius:16px}
 .chip:hover{border-color:#ffffff !important}
 .chip.on{background:rgba(255,255,255,.24) !important}
-.sec h3{background:rgba(184,83,42,.86) !important;border-color:#ffffff !important}
+.sec h3{background:rgba(31,38,60,.86) !important;border-color:#ffffff !important}
 .row:hover{background:rgba(255,255,255,.12) !important}
 .row.sel{background:rgba(255,255,255,.24) !important}
 .thumb{background:rgba(255,255,255,.12) !important;border-radius:16px}
