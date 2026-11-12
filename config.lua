@@ -30,9 +30,9 @@ Config.AutoAces = true                     -- true: grant the dps.fleet ace to g
 -- (police+fire+ambulance+mechanic). Mechanic repair pricing comes from
 -- Config.RepairCosts.freeForJobs, which is a separate list.
 Config.JobMappings = { -- DPS 2026-09-25: group keys, not job names. Every LEO / fire / medical job listed.
-    police = {'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg'},
-    fire = {'lsfd', 'rfd'},
-    ambulance = {'sams', 'omc', 'rmc'},
+    police = {'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg'},
+    fire = {'lsfd'},
+    ambulance = {'sams', 'lsmc'},
     mechanic = {'mechanic'}
 }
 
@@ -92,14 +92,10 @@ Config.RepairCosts = {
         {job = 'fib', discount = 0.25},
         {job = 'doc', discount = 0.25},
         {job = 'dfw', discount = 0.25},
-        {job = 'rpd', discount = 0.25},
-        {job = 'rcso', discount = 0.25},
         {job = 'uscg', discount = 0.25},
         {job = 'lsfd', discount = 0.25},
-        {job = 'rfd', discount = 0.25},
         {job = 'sams', discount = 0.25}, -- DPS 2026-09-25: medical set (was vendor 'ambulance')
-        {job = 'omc', discount = 0.25},
-        {job = 'rmc', discount = 0.25}
+        {job = 'lsmc', discount = 0.25},
     }
 }
 
@@ -153,8 +149,8 @@ Config.FieldRepair = {
     allowedJobs = {                    -- Jobs that can use field repair (real DPS jobs only;
                                        -- no mechanic: field repair is reached through the menu,
                                        -- which is emergency-jobs-only)
-        'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg',
-        'lsfd', 'rfd', 'sams', 'omc', 'rmc' -- DPS 2026-09-25: was '... lsfd, ambulance'
+        'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg',
+        'lsfd', 'sams', 'lsmc' -- DPS 2026-09-25: was '... lsfd, ambulance'
     },
     minGrade = 0,                      -- Minimum job grade (0 = any grade)
     maxEngineRepair = 350.0,           -- Max engine health from field repair (see Constants.ENGINE_MAX_FIELD_REPAIR)
@@ -285,13 +281,9 @@ Config.TrunkGear = {
         doc         = { 'bproof', 'refvest', 'helmet' },
         dfw         = { 'bproof', 'refvest', 'helmet' },
         uscg        = { 'bproof', 'refvest', 'helmet' },
-        rpd         = { 'bproof', 'refvest', 'helmet' },
-        rcso        = { 'bproof', 'refvest', 'helmet' },
         lsfd        = { 'turnout', 'firehelmet', 'refvest' },
-        rfd         = { 'turnout', 'firehelmet', 'refvest' },
         sams        = { 'refvest', 'medbag' },
-        omc         = { 'refvest', 'medbag' },
-        rmc         = { 'refvest', 'medbag' },
+        lsmc         = { 'refvest', 'medbag' },
     },
     -- Only reached by a model that IS in data/emergency.json but whose department
     -- has no kit above — the dept 'none' and 'unsorted' rows (coroner vans, tow
@@ -305,7 +297,7 @@ Config.TrunkGear = {
     -- so fire and medical jobs are in without an edit. Authorizedjobs is only read
     -- when AutoJobs = false.
     AutoJobs = true,
-    Authorizedjobs = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
+    Authorizedjobs = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
 
     -- false: an allowed job may only take gear off its own family's vehicles, so
     -- police cannot pull turnout gear out of a fire engine. true: any allowed job
@@ -314,21 +306,17 @@ Config.TrunkGear = {
     -- Department -> the job names that may take its kit. A department left out is
     -- open to every allowed job. Job names are the canon in qbx_core/shared/jobs.lua.
     DeptJobs = {
-        police      = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        police_swat = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        bcso        = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        sasp        = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        fib         = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        doc         = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        dfw         = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        uscg        = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        rpd         = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        rcso        = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'rpd', 'rcso', 'uscg' },
-        lsfd        = { 'lsfd', 'rfd' },
-        rfd         = { 'lsfd', 'rfd' },
-        sams        = { 'sams', 'omc', 'rmc' },
-        omc         = { 'sams', 'omc', 'rmc' },
-        rmc         = { 'sams', 'omc', 'rmc' },
+        police      = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
+        police_swat = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
+        bcso        = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
+        sasp        = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
+        fib         = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
+        doc         = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
+        dfw         = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
+        uscg        = { 'police', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg' },
+        lsfd        = { 'lsfd' },
+        sams        = { 'sams', 'lsmc' },
+        lsmc         = { 'sams', 'lsmc' },
     },
 
     ---------------------------------------------------------

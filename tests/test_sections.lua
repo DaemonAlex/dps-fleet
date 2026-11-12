@@ -2,7 +2,6 @@ local L = {
     { model = 'hvfiretruk', name = 'Fire Engine', brand = 'MTL', category = 'emergency', type = 'automobile', price = 0, pack = 'cfx-hv-safr-pack', dept = 'lsfd', kind = 'Fire engine' },
     { model = 'hvfdladder', name = 'Fire Ladder Truck', brand = 'MTL', category = 'emergency', type = 'automobile', price = 0, pack = 'cfx-hv-safr-pack', dept = 'lsfd', kind = 'Ladder truck' },
     { model = 'hvfdambulance', name = 'Fire Ambulance', brand = 'Brute', category = 'emergency', type = 'automobile', price = 0, pack = 'cfx-hv-safr-pack', dept = 'lsfd', kind = 'Ambulance' },
-    { model = 'ambroxfireeng1', name = 'Roxwood Fire Engine', brand = 'MTL', category = 'emergency', type = 'automobile', price = 0, pack = 'amb-roxwood-vehicles', dept = 'rfd', kind = 'Fire engine' },
     { model = 'hvsamsambulance', name = 'Ambulance', brand = 'Brute', category = 'emergency', type = 'automobile', price = 0, pack = 'hv-lorefriendly-sams-pack', dept = 'sams', kind = 'Ambulance' },
     { model = 'gbpolstanier', name = 'Stanier LE Police', brand = 'Vapid', category = 'emergency', type = 'automobile', price = 0, pack = 'gb_vehicles_pd_ems', dept = 'police', kind = 'Cruiser' },
     { model = 'hvswatalamo', name = 'Alamo SWAT', brand = 'Declasse', category = 'emergency', type = 'automobile', price = 0, pack = 'cfx-hv-lorefriendly-swat-pack', dept = 'police_swat', kind = 'Tactical' },
@@ -24,7 +23,6 @@ check('bikes group', names(s):find('Bikes — Cruisers', 1, true))
 check('dept then kind', names(s):find('Los Santos Fire Department — Fire engines | Los Santos Fire Department — Ladder trucks | Los Santos Fire Department — Ambulances', 1, true))
 check('lspd before lsfd (dept order)', names(s):find('Los Santos Police Department') < names(s):find('Los Santos Fire Department'))
 check('swat as its own dept', names(s):find('LSPD SWAT — Tactical', 1, true))
-check('roxwood fire after LS fire', names(s):find('Roxwood Fire Department — Fire engines', 1, true))
 check('unsorted emergency lands in No department yet — Other', names(s):find('No department yet — Other', 1, true))
 check('air group', names(s):find('Air — Business jets', 1, true))
 
@@ -44,9 +42,7 @@ eq('swat: one section', #s, 1); eq('swat: model', s[1].models[1], 'hvswatalamo')
 s = Search.sections(L, 'bikes', { chip = 'all' })
 eq('bikes: cruisers only', names(s), 'Bikes — Cruisers')
 s = Search.sections(L, 'fire engines', { chip = 'all' })
-eq('fire engines: both departments', #s, 2)
-s = Search.sections(L, 'rox engine', { chip = 'all' })
-eq('rox engine: one', #s, 1); eq('rox engine: roxwood', s[1].models[1], 'ambroxfireeng1')
+eq('fire engines: one department now', #s, 1)
 
 -- chips
 s = Search.sections(L, '', { chip = 'emergency' })

@@ -32,7 +32,7 @@ see [Upgrading from dps-EVM / dps-carmenu](#upgrading-from-dps-evm--dps-carmenu)
   think about it: top groups (Street, Bikes, Racing, Emergency, Work, Air,
   Sea, Other) → categories within a group. The Emergency group instead groups
   by **department** (Los Santos Police Department, BCSO, SAHP, FIB, DOC, Fish
-  & Wildlife, Coast Guard, Roxwood PD/SO, LSFD, RFD, SAMS, OMC, RMC) and then
+  & Wildlife, Coast Guard, LSFD, SAMS, LSMC) and then
   by **kind** (Cruiser, Unmarked, SUV / truck, Fire engine, Ladder truck,
   Ambulance, Helicopter, …). LSPD SWAT (`police_swat`) has its own row inside
   the Los Santos Police Department department.
@@ -97,6 +97,33 @@ is allowed to take that department's kit. See
 [Data files](#data-files).
 
 ---
+
+## What it is for
+
+A server collects hundreds of vehicles, and staff end up remembering spawn names. This gives one
+panel to find any vehicle by department, kind, brand or price, see it, and spawn it. The same
+panel sets up emergency vehicles properly: the right livery, extras, sirens and trunk gear for
+each department, saved so the next officer gets the same car.
+
+## On its own, and with other scripts
+
+**On its own.** With Qbox, `ox_lib`, `oxmysql` and `ox_target`: the full browser and the full
+workshop, with presets, custom liveries and trunk gear.
+
+**With paid vehicle packs.** This is where it earns its place. A police or fire pack often ships
+dozens of extras and liveries with no way to manage them in game. Here each vehicle's setup is
+saved once and applied every time, per department.
+
+**With a paid vehicle photo script (jg-vehiclestudio).** The browser shows a photo of each
+vehicle where one exists.
+
+**With a paid key script (wasabi_carlock).** A spawned vehicle comes with its key.
+
+**With an ox_inventory based inventory, such as [dps-inventory](https://github.com/DaemonAlex/dps-inventory).**
+Trunk gear (vests, helmets, medical bags) is handed out as real items to the right department.
+
+**With [dps-studio](https://github.com/DaemonAlex/dps-studio).** Studio's panel has a button that
+opens this one.
 
 ## Requirements
 
@@ -247,10 +274,10 @@ engine-health cap) is read by the current code. The rest of this table
 | `enabled` | `true` | One switch for the whole feature |
 | `AutoVehicles` | `true` | Every model in `data/emergency.json` carries its department's kit automatically — a new emergency pack needs no edit here |
 | `allowedVehicles` | `{}` | Per-model override, read whether `AutoVehicles` is on or off; with it off, this list is the *only* source |
-| `DeptGear` | police/bcso/sasp/fib/doc/dfw/rpd/rcso/uscg → vest+helmet kit; `police_swat` → heavy kit; `lsfd`/`rfd` → turnout kit; `sams`/`omc`/`rmc` → medbag kit | Department → kit, keyed by the `dept` values in `data/emergency.json` |
+| `DeptGear` | police/bcso/sasp/fib/doc/dfw/uscg → vest+helmet kit; `police_swat` → heavy kit; `lsfd` → turnout kit; `sams`/`lsmc` → medbag kit | Department → kit, keyed by the `dept` values in `data/emergency.json` |
 | `DefaultGear` | `{ 'refvest' }` | Kit for a model that's in `data/emergency.json` but whose department isn't in `DeptGear` (`none`/`unsorted` rows — coroner vans, tow trucks) |
 | `AutoJobs` | `true` | Re-uses the Workshop job set (LEO + EMS types + `Config.ExtraWorkshopJobs`) so a new department needs no edit |
-| `Authorizedjobs` | `{ police, bcso, sasp, fib, doc, dfw, rpd, rcso, uscg }` | **Only read when `AutoJobs = false`** |
+| `Authorizedjobs` | `{ police, bcso, sasp, fib, doc, dfw, uscg }` | **Only read when `AutoJobs = false`** |
 | `CrossDept` | `false` | `false`: an allowed job may only take **its own family's** department kit (police can't pull turnout gear from a fire engine); `true`: any allowed job can take any department's kit |
 | `DeptJobs` | one list per department (see `config.lua`) | Which job names may take that department's kit; a department left out is open to any allowed job |
 | `RequireUnlocked` | `true` | The vehicle must be unlocked to open its trunk |
@@ -347,3 +374,40 @@ Short version: your data is kept, your commands still work. Full steps in
 
 MIT — see [LICENSE](LICENSE). Third-party pieces keep their own license; see
 Credits above.
+
+## Recent changes
+
+- **12 November 2026.** README: what it is for, how it works alone and with paid scripts, other DPS scripts.
+- **31 October 2026.** Departments now match the jobs DelPerroSands runs: the Roxwood police, sheriff, fire and medical departments are removed, and the hospital department is `lsmc`. `data/emergency.json`, `shared/groups.lua` and the trunk gear list were updated together. If your server has other departments, add them in those three places.
+
+## Author
+
+Made by [DaemonAlex](https://github.com/DaemonAlex) for DelPerroSands.
+
+## Other DPS scripts
+
+All of these are made for DelPerroSands and run together on one Qbox server. Each one works on
+its own. The ones marked "pairs with" do more when both are running.
+
+| Script | What it does |
+|---|---|
+| [dps-inventory](https://github.com/DaemonAlex/dps-inventory) | The inventory: ox_inventory with equipment slots, backpacks, armour plates and a self status panel, in the DelPerroSands colours. |
+| [dps-medical](https://github.com/DaemonAlex/dps-medical) | Patient records, illness and diagnostic tests. A companion to wasabi_ambulance. Pairs with dps-inventory: symptoms and diagnoses show on the status panel. |
+| [dps-insurance](https://github.com/DaemonAlex/dps-insurance) | Ties m-Insurance into the MDT, impound, hospital and medical chart. Pairs with dps-medical. |
+| [dps-studio](https://github.com/DaemonAlex/dps-studio) | Build rooms, doors and portals in game from one panel (`/studio`), with owners and managers so staff do not have to support them. |
+| [dps-shops](https://github.com/DaemonAlex/dps-shops) | Shop clerks who greet and react to a robbery, then player-owned shops. |
+| [dps-parking](https://github.com/DaemonAlex/dps-parking) | Parking with valet, impound, violations and reserved spots. |
+| [dps-vehiclepersistence](https://github.com/DaemonAlex/dps-vehiclepersistence) | Vehicles stay where they were parked. Pairs with dps-parking. |
+| [dps-towjob](https://github.com/DaemonAlex/dps-towjob) | Queue-based tow job with jg-mechanic integration. |
+| [dps-services](https://github.com/DaemonAlex/dps-services) | Request a tow and follow it live on the lb-phone and lb-tablet. Pairs with dps-towjob. |
+| [dps-autoshops](https://github.com/DaemonAlex/dps-autoshops) | Self-service repair shops when no mechanic is on duty. |
+| [dps-cityworker](https://github.com/DaemonAlex/dps-cityworker) | City infrastructure job and career. |
+| [dps-ainpcs](https://github.com/DaemonAlex/dps-ainpcs) | NPCs you can talk to, with trust, quests and intel. |
+| [dps-badpeds](https://github.com/DaemonAlex/dps-badpeds) | Police interaction with NPCs: stops, arrests, intel and jail records. |
+| [dps-gangwars](https://github.com/DaemonAlex/dps-gangwars) | Ambient gang NPCs, territory population and war reinforcements. |
+| [dps-rotations](https://github.com/DaemonAlex/dps-rotations) | Moves dealers, harvests and other spots on a fixed schedule. |
+| [dps-trains](https://github.com/DaemonAlex/dps-trains) | The train system. Pairs with dps-trains-stock, dps-traintools and dps-transitapp. |
+| [dps-transitapp](https://github.com/DaemonAlex/dps-transitapp) | Live train arrival boards on the lb-phone. |
+| [dps-faceplant](https://github.com/DaemonAlex/dps-faceplant) | City help, reports and staff tools on the lb-phone and lb-tablet. |
+| [dps-chat](https://github.com/DaemonAlex/dps-chat) | A command box for voice-only servers. No chat feed. |
+| [dps-filmmode](https://github.com/DaemonAlex/dps-filmmode) | One key hides every HUD layer and gives a smooth free camera for recording. |
