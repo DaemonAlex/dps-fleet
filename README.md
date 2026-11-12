@@ -380,6 +380,10 @@ Credits above.
 - **12 November 2026.** README: what it is for, how it works alone and with paid scripts, other DPS scripts.
 - **31 October 2026.** Departments now match the jobs DelPerroSands runs: the Roxwood police, sheriff, fire and medical departments are removed, and the hospital department is `lsmc`. `data/emergency.json`, `shared/groups.lua` and the trunk gear list were updated together. If your server has other departments, add them in those three places.
 
+## Author
+
+Made by [DaemonAlex](https://github.com/DaemonAlex) for DelPerroSands.
+
 ## Other DPS scripts
 
 All of these are made for DelPerroSands and run together on one Qbox server. Each one works on
