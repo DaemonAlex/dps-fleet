@@ -152,10 +152,10 @@ eq('a department with no kit falls back to the default',
 
 -- CrossDept = false keeps an allowed job to its own family's vehicles, so police
 -- cannot pull turnout gear out of a fire engine.
-gcfg.TrunkGear.DeptJobs = { police = { 'police', 'bcso' }, police_swat = { 'police', 'bcso' }, lsfd = { 'lsfd', 'rfd' } }
+gcfg.TrunkGear.DeptJobs = { police = { 'police', 'bcso' }, police_swat = { 'police', 'bcso' }, lsfd = { 'lsfd' } }
 eq('own department ok', Gear.deptAllowed('police', 'police', gcfg), true)
 eq('police may not raid an engine', Gear.deptAllowed('police', 'lsfd', gcfg), false)
-eq('fire may take fire gear off another fire rig', Gear.deptAllowed('rfd', 'lsfd', gcfg), true)
+eq('a sister agency may take gear off the family rig', Gear.deptAllowed('bcso', 'police', gcfg), true)
 eq('a department with no job list is open to any allowed job', Gear.deptAllowed('police', 'none', gcfg), true)
 gcfg.TrunkGear.CrossDept = true
 eq('CrossDept opens every department', Gear.deptAllowed('police', 'lsfd', gcfg), true)

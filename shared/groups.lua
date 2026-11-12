@@ -34,12 +34,12 @@ Groups.GROUP_OF = {}
 for _, g in ipairs(Groups.GROUPS) do for _, c in ipairs(g.cats) do Groups.GROUP_OF[c] = g end end
 
 -- Department keys are the qbx job names (plus police_swat for the tactical fleet).
-Groups.DEPT_ORDER = { 'police', 'police_swat', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg', 'rpd', 'rcso', 'lsfd', 'rfd', 'sams', 'omc', 'rmc', 'unsorted', 'none' }
+Groups.DEPT_ORDER = { 'police', 'police_swat', 'bcso', 'sasp', 'fib', 'doc', 'dfw', 'uscg', 'lsfd', 'sams', 'lsmc', 'unsorted', 'none' }
 Groups.DEPT_NAME = {
     police = 'Los Santos Police Department', police_swat = 'LSPD SWAT', bcso = "Blaine County Sheriff's Office", sasp = 'San Andreas Highway Patrol',
     fib = 'Federal Investigation Bureau', doc = 'Department of Corrections', dfw = 'Fish & Wildlife', uscg = 'Coast Guard',
     rpd = 'Roxwood Police Department', rcso = "Roxwood County Sheriff's Office", lsfd = 'Los Santos Fire Department', rfd = 'Roxwood Fire Department',
-    sams = 'San Andreas Medical Services', omc = 'Ocean Medical Center', rmc = 'Roxwood Medical Center', unsorted = 'Unsorted', none = 'No department yet',
+    sams = 'San Andreas Medical Services', omc = 'Los Santos Medical Center', rmc = 'Roxwood Medical Center', unsorted = 'Unsorted', none = 'No department yet',
 }
 Groups.DEPT_CODE = {
     police = 'LSPD', police_swat = 'SWAT', bcso = 'BCSO', sasp = 'SAHP', fib = 'FIB', doc = 'DOC', dfw = 'DFW', uscg = 'USCG', rpd = 'RPD', rcso = 'RCSO',
